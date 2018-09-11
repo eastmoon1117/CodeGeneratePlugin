@@ -1,0 +1,18 @@
+package $packagename.presenter.dagger
+
+import com.zmsoft.ccd.app.PresentScoped
+import com.zmsoft.ccd.data.repository.CommonRepository
+import $packagename.ui.$nameListFragment
+import dagger.Component
+
+/**
+ * @author $author
+ * @Description: $description
+ * @date $date
+ */
+
+@PresentScoped
+@Component(dependencies = [CommonRepository::class], modules = [($namePresenterModule::class)])
+interface $nameComponent {
+    fun inject(fragment: $nameListFragment)
+}

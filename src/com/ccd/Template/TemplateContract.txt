@@ -1,0 +1,20 @@
+package $packagename.presenter
+
+import com.zmsoft.ccd.lib.base.BasePresenter
+import com.zmsoft.ccd.lib.base.BaseView
+
+/**
+ * @author $author
+ * @Description: $description
+ * @date $date
+ */
+interface $nameContract {
+    interface View : BaseView<Any> {
+        fun getServerTimeSuccess()
+        fun getServerTimeFailure(errCode: String, errMessage: String?)
+    }
+
+    interface Presenter : BasePresenter {
+        fun getServerTime()
+    }
+}

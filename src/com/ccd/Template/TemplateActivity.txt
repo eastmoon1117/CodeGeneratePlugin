@@ -1,0 +1,27 @@
+package $packagename.ui
+
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import com.zmsoft.ccd.lib.base.activity.ToolBarActivity
+import com.zmsoft.ccd.lib.base.helper.ActivityHelper
+import $basepackagename.R
+
+/**
+ * @author $author
+ * @Description: $description
+ * @date $date
+ */
+
+class $nameActivity : ToolBarActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.module_$module_activity_$lowname)
+
+        var fragment: Fragment? = supportFragmentManager.findFragmentById(R.id.content)
+        if (null == fragment) {
+            fragment = $nameListFragment()
+            ActivityHelper.showFragment(supportFragmentManager, fragment, R.id.content)
+        }
+    }
+}

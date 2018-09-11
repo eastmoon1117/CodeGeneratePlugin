@@ -1,0 +1,18 @@
+package $packagename.adapter
+
+import android.content.Context
+import android.view.ViewGroup
+import com.zmsoft.ccd.lib.base.adapter.BaseHolder
+import com.zmsoft.ccd.lib.base.adapter.BaseListAdapter
+
+class $nameAdapter(context: Context?) : BaseListAdapter(context, null) {
+
+    override fun onMyCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseHolder {
+        return getUnKnowViewHolder(parent)
+    }
+
+    override fun getMyItemViewType(position: Int): Int {
+        val obj = getModel(position)
+        return -1
+    }
+}

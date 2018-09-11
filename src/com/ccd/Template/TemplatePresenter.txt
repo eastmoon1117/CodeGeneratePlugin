@@ -1,0 +1,38 @@
+package $packagename.presenter
+
+import com.zmsoft.ccd.data.repository.CommonRepository
+import com.zmsoft.ccd.lib.base.exception.ServerException
+import javax.inject.Inject
+
+/**
+ * @author $author
+ * @Description: $description
+ * @date $date
+ */
+
+class $namePresenter @Inject constructor(
+        var view: $nameContract.View?,
+        val repository: CommonRepository
+) : $nameContract.Presenter {
+
+    override fun subscribe() {}
+
+    override fun unsubscribe() {
+        view = null
+    }
+
+    override fun getServerTime() {
+        repository.serverTime.subscribe(
+                {
+                    view?.getServerTimeSuccess()
+                },
+                { throwable ->
+                    view?.let {
+                        val e: ServerException? = ServerException.convertIfSame(throwable)
+                        e?.let {
+                            view?.getServerTimeFailure(e.errorCode, e.message)
+                        }
+                    }
+                })
+    }
+}

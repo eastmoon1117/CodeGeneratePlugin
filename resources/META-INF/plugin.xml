@@ -1,0 +1,30 @@
+<idea-plugin>
+  <id>com.jared.plugin.id</id>
+  <name>CCD Code Generate Plugin</name>
+  <version>1.1</version>
+  <vendor email="huaixi@2dfire.com">2dfire</vendor>
+
+  <description><![CDATA[
+      Generate Android MVP, Dagger Code.<br>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>
+    ]]>
+  </change-notes>
+
+  <idea-version since-build="173.0"/>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <action id="CCDCodeGenerateID" class="com.ccd.CodeGenerate" text="CCD Code Generate" description="生成mvp，dagger模板代码">
+      <add-to-group group-id="CodeMenu" anchor="first"/>
+    </action>
+  </actions>
+
+</idea-plugin>

@@ -1,0 +1,20 @@
+package $packagename.presenter.dagger
+
+import $packagename.presenter.$nameContract
+import dagger.Module
+import dagger.Provides
+
+/**
+ * @author $author
+ * @Description: $description
+ * @date $date
+ */
+
+@Module
+class $namePresenterModule(var view: $nameContract.View) {
+
+    @Provides
+    fun provide$nameView(): $nameContract.View {
+        return view
+    }
+}

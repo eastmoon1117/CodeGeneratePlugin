@@ -1,0 +1,80 @@
+package $packagename.ui
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.zmsoft.ccd.lib.base.adapter.BaseListAdapter
+import com.zmsoft.ccd.lib.base.fragment.BaseListFragment
+import com.zmsoft.ccd.lib.utils.ToastUtils
+import $basepackagename.R
+import $packagename.adapter.$nameAdapter
+import $packagename.presenter.$nameContract
+import $packagename.presenter.$namePresenter
+import $packagename.presenter.dagger.Dagger$nameComponent
+import $packagename.presenter.dagger.$namePresenterModule
+import javax.inject.Inject
+
+/**
+ * @author $author
+ * @Description: $description
+ * @date $date
+ */
+
+class $nameListFragment : BaseListFragment(), $nameContract.View {
+
+    @Inject
+    lateinit var presenter: $namePresenter
+
+    override fun getLayoutId(): Int {
+        return R.layout.module_$module_fragment_$lowname
+    }
+
+    override fun createAdapter(): BaseListAdapter {
+        return $nameAdapter(context)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        initPresenter()
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+    private fun initPresenter() {
+        Dagger$nameComponent.builder()
+                .$lownamePresenterModule($namePresenterModule(this))
+                .build().inject(this)
+    }
+
+    override fun setPresenter(presenter: Any?) {
+        this.presenter = presenter as $namePresenter
+    }
+
+    override fun unBindPresenterFromView() {
+        presenter.unsubscribe()
+    }
+
+    override fun loadListData() {
+    }
+
+    override fun getServerTimeSuccess() {
+        hideLoading()
+        showContentView()
+    }
+
+    override fun getServerTimeFailure(errCode: String, errMessage: String?) {
+        hideLoading()
+        loadListFailed()
+        if (adapter != null && adapter.listCount == 0) {
+            adapter.hideEmpty()
+            showErrorView(errMessage)
+        } else {
+            ToastUtils.showShortToast(context, errMessage)
+        }
+    }
+
+    override fun clickRetryView() {
+        super.clickRetryView()
+        disableAutoRefresh()
+        startRefresh()
+    }
+}
